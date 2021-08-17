@@ -1,7 +1,7 @@
 <template>
-  <div class="w-3/6 m-auto pt-14">
+  <div>
     <Header />
-    <div class="mt-12 divide-y divide-gray-300">
+    <div class="mt-10 divide-y divide-gray-300">
       <List :item="todo" v-for="todo in todos" :key="todo.id" />
     </div>
   </div>
