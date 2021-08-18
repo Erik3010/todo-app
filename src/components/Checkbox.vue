@@ -1,6 +1,11 @@
 <template>
   <div class="flex items-center">
-    <input type="checkbox" :id="id" class="opacity-0 absolute" />
+    <input
+      type="checkbox"
+      :checked="checked"
+      :id="id"
+      class="opacity-0 absolute cursor-pointer"
+    />
     <div
       class="transition flex items-center justify-center mr-2 bg-white border-2 border-gray-300 w-4 h-4 rounded-sm cursor-pointer"
     >
@@ -20,7 +25,7 @@ export default {
   components: {
     Check,
   },
-  props: ["id"],
+  props: ["id", "checked"],
 };
 </script>
 

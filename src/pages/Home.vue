@@ -25,18 +25,22 @@ export default {
       {
         id: uuid(),
         title: "Todo 1",
+        done: false,
       },
       {
         id: uuid(),
         title: "Todo 2",
+        done: true,
       },
       {
         id: uuid(),
         title: "Todo 3",
+        done: false,
       },
       {
         id: uuid(),
         title: "Todo 4",
+        done: false,
       },
     ]);
 
