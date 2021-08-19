@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center w-full">
     <input
       type="checkbox"
       :checked="checked"
@@ -11,7 +11,7 @@
     >
       <Check class="hidden w-2 h-2 select-none text-blue-500" />
     </div>
-    <label class="cursor-pointer select-none" :for="id">
+    <label class="cursor-pointer select-none w-full" :for="id">
       <slot />
     </label>
   </div>

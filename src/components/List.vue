@@ -5,14 +5,14 @@
         <span>{{ item.title }}</span>
       </Checkbox>
       <div>
-        <Dropdown :isShowMenu="isShowMenu" @clickOutside="isShowMenu = false">
-          <template #activator>
-            <div @click="isShowMenu = true">
+        <Dropdown :isShowMenu="isShowMenu">
+          <template #activator="{ openDropdown }">
+            <div @click="openDropdown">
               <VerticalDots class="h-5 w-5 text-gray-500 hover:text-gray-800" />
             </div>
           </template>
           <template #dropdown-item>
-            <DropdownList>
+            <DropdownList @option-click="editTodo(item.id)">
               <Pencil class="w-4 h-4 text-gray-600" />
               <span class="ml-2">Edit</span>
             </DropdownList>
@@ -54,7 +54,15 @@ export default {
   setup() {
     const isShowMenu = ref(false);
 
-    return { isShowMenu };
+    const editTodo = (id) => {
+      console.log(id);
+    };
+
+    const toggleDropdown = () => {
+      isShowMenu.value = !isShowMenu.value;
+    };
+
+    return { isShowMenu, editTodo, toggleDropdown };
   },
 };
 </script>
