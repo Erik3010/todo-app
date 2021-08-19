@@ -14,41 +14,38 @@
 
 <script>
 import { onBeforeUnmount, onMounted, ref, provide } from "vue";
+import useDropdown from "@/hooks/useDropdown";
 
 export default {
   name: "Dropdown",
-  props: ["isShowMenu"],
   setup() {
-    const showMenu = ref(false);
+    const { showMenu, toggleDropdown, closeDropdown } = useDropdown();
+
     const dropdown = ref(null);
-
-    const clickHandler = (event) => {
-      const { target } = event;
-
-      if (!dropdown.value.contains(target)) {
-        showMenu.value = false;
-      }
-    };
-
-    const toggleDropdown = () => {
-      showMenu.value = !showMenu.value;
-    };
-
-    const closeDropdown = () => {
-      showMenu.value = false;
-    };
 
     provide("closeDropdown", closeDropdown);
 
+    const clickAwayHandler = (event) => {
+      const { target } = event;
+
+      if (!dropdown.value.contains(target)) {
+        closeDropdown();
+      }
+    };
+
     onMounted(() => {
-      document.addEventListener("click", clickHandler);
+      document.addEventListener("click", clickAwayHandler);
     });
 
     onBeforeUnmount(() => {
-      document.removeEventListener("click", clickHandler);
+      document.removeEventListener("click", clickAwayHandler);
     });
 
-    return { dropdown, toggleDropdown, showMenu };
+    return {
+      dropdown,
+      toggleDropdown,
+      showMenu,
+    };
   },
 };
 </script>

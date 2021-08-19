@@ -5,7 +5,7 @@
         <span>{{ item.title }}</span>
       </Checkbox>
       <div>
-        <Dropdown :isShowMenu="isShowMenu">
+        <Dropdown>
           <template #activator="{ openDropdown }">
             <div @click="openDropdown">
               <VerticalDots class="h-5 w-5 text-gray-500 hover:text-gray-800" />
@@ -38,8 +38,6 @@ import VerticalDots from "@/components/Icons/VerticalDots";
 import Trash from "@/components/Icons/Trash";
 import Pencil from "@/components/Icons/Pencil";
 
-import { ref } from "vue";
-
 export default {
   name: "List",
   components: {
@@ -52,17 +50,11 @@ export default {
   },
   props: ["item"],
   setup() {
-    const isShowMenu = ref(false);
-
     const editTodo = (id) => {
       console.log(id);
     };
 
-    const toggleDropdown = () => {
-      isShowMenu.value = !isShowMenu.value;
-    };
-
-    return { isShowMenu, editTodo, toggleDropdown };
+    return { editTodo };
   },
 };
 </script>
