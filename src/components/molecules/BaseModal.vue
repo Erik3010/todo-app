@@ -12,7 +12,7 @@
         </div>
         <div class="border-t border-gray-300 my-5 py-4">
           <form action="">
-            <BaseInput />
+            <BaseInputText />
           </form>
         </div>
         <div class="sm:flex sm:justify-end">
@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import BaseInput from "@/components/atoms/BaseInput";
+import BaseInputText from "@/components/atoms/BaseInputText";
 import BaseButton from "@/components/atoms/BaseButton";
 
 export default {
   name: "BaseList",
   components: {
-    BaseInput,
+    BaseInputText,
     BaseButton,
   },
 };

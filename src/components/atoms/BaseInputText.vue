@@ -14,6 +14,6 @@
 
 <script>
 export default {
-  name: "BaseInput",
+  name: "BaseInputText",
 };
 </script>
