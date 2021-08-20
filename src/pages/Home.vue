@@ -11,7 +11,7 @@
       <BaseItem :item="todo" v-for="todo in todos" :key="todo.id" />
     </div>
   </div>
-  <!-- <BaseModal /> -->
+  <BaseModal />
 </template>
 
 <script>
