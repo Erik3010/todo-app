@@ -1,28 +1,36 @@
 <template>
   <div>
-    <Header />
-    <div class="mt-10 divide-y divide-gray-300">
-      <List :item="todo" v-for="todo in todos" :key="todo.id" />
+    <BaseHeader />
+    <div
+      class="mt-10 ml-2 rounded-md flex items-center cursor-pointer space-x-2 hover:bg-gray-100 p-3"
+    >
+      <Plus class="h-5 w-5 text-blue-500" />
+      <span class="text-gray-500 text-sm">Add Todo</span>
+    </div>
+    <div class="mt-2 divide-y divide-gray-300">
+      <BaseItem :item="todo" v-for="todo in todos" :key="todo.id" />
     </div>
   </div>
-  <Modal />
+  <!-- <BaseModal /> -->
 </template>
 
 <script>
 import { reactive } from "vue";
 
-import Header from "@/components/Header";
-import List from "@/components/List";
+import Plus from "@/components/icons/Plus";
 
-import Modal from "@/components/Modal";
+import BaseModal from "@/components/molecules/BaseModal";
+import BaseItem from "@/components/molecules/BaseItem";
+import BaseHeader from "@/components/organisms/BaseHeader";
 
 import uuid from "@/utils/uuid";
 
 export default {
   components: {
-    Header,
-    List,
-    Modal,
+    BaseHeader,
+    BaseItem,
+    BaseModal,
+    Plus,
   },
   setup() {
     const todos = reactive([

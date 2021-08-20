@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import VerticalDots from "@/components/Icons/VerticalDots";
+import VerticalDots from "@/components/icons/VerticalDots";
 
 export default {
-  name: "Header",
+  name: "BaseHeader",
   components: {
     VerticalDots,
   },

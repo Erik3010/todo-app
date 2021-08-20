@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import Check from "@/components/Icons/Check";
+import Check from "@/components/icons/Check";
 
 export default {
-  name: "Checkbox",
+  name: "BaseCheckbox",
   components: {
     Check,
   },
@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 input[type="checkbox"]:checked + div {
   @apply border-blue-500;
 }

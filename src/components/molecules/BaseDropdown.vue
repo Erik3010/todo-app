@@ -14,10 +14,11 @@
 
 <script>
 import { onBeforeUnmount, onMounted, ref, provide } from "vue";
+
 import useDropdown from "@/hooks/useDropdown";
 
 export default {
-  name: "Dropdown",
+  name: "BaseDropdown",
   setup() {
     const { showMenu, toggleDropdown, closeDropdown } = useDropdown();
 
@@ -50,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .dropdown-animation-enter-active,
 .dropdown-animation-leave-active {
   transform-origin: top left;

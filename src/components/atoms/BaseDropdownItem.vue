@@ -12,7 +12,7 @@
 import { inject } from "vue";
 
 export default {
-  name: "DropdownList",
+  name: "BaseDropdownItem",
   setup(_, { emit }) {
     const closeDrodown = inject("closeDropdown");
 
