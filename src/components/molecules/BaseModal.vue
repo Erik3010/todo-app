@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import { ref } from "vue";
-
 import BaseInputText from "@/components/atoms/BaseInputText";
 import BaseTextarea from "@/components/atoms/BaseTextarea";
+
+import useModal from "@/hooks/useModal";
 
 export default {
   name: "BaseList",
@@ -53,10 +53,7 @@ export default {
     BaseTextarea,
   },
   setup() {
-    const isOpenModal = ref(false);
-
-    const openModal = () => (isOpenModal.value = true);
-    const closeModal = () => (isOpenModal.value = false);
+    const { isOpenModal, openModal, closeModal } = useModal();
 
     return { isOpenModal, openModal, closeModal };
   },
