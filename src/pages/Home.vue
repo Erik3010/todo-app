@@ -5,6 +5,7 @@
       <List :item="todo" v-for="todo in todos" :key="todo.id" />
     </div>
   </div>
+  <Modal />
 </template>
 
 <script>
@@ -13,12 +14,15 @@ import { reactive } from "vue";
 import Header from "@/components/Header";
 import List from "@/components/List";
 
+import Modal from "@/components/Modal";
+
 import uuid from "@/utils/uuid";
 
 export default {
   components: {
     Header,
     List,
+    Modal,
   },
   setup() {
     const todos = reactive([
