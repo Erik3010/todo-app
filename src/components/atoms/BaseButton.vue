@@ -1,5 +1,5 @@
 <template>
-  <button :class="type">
+  <button :class="variant">
     <slot />
   </button>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "BaseButton",
-  props: ["type"],
+  props: ["variant"],
 };
 </script>
 

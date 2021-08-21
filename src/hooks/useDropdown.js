@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-export default function useDropdown() {
+export default function() {
   const showMenu = ref(false);
 
   const toggleDropdown = () => (showMenu.value = !showMenu.value);
