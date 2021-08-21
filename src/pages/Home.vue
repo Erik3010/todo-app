@@ -13,9 +13,11 @@
       </template>
       <template #header>
         <h3 class="text-xl leading-6 font-medium text-gray-900">
-          Add Todo
+          {{ todoId ? "Edit" : "Add" }} Todo
         </h3>
-        <p class="text-sm text-gray-500 mt-1">Create your Todo List</p>
+        <p class="text-sm text-gray-500 mt-1">
+          {{ todoId ? "Update" : "Create" }} your Todo List
+        </p>
       </template>
       <template #content>
         <form @submit.prevent="submitTodo">
@@ -36,7 +38,7 @@
       </template>
       <template #footer>
         <BaseButton variant="primary" @click="submitTodo">
-          Add Todo
+          {{ todoId ? "Edit" : "Add" }} Todo
         </BaseButton>
         <BaseButton
           class="sm:ml-3 mt-3 sm:mt-0"
@@ -48,7 +50,12 @@
       </template>
     </BaseModal>
     <div class="mt-2 divide-y divide-gray-300">
-      <BaseItem :item="todo" v-for="todo in todos" :key="todo.id" />
+      <BaseItem
+        :item="todo"
+        v-for="todo in todos"
+        :key="todo.id"
+        @edit-todo="editTodo"
+      />
     </div>
   </div>
 </template>
@@ -67,8 +74,6 @@ import BaseHeader from "@/components/organisms/BaseHeader";
 
 import useTodo from "@/store/useTodo";
 
-import uuid from "@/utils/uuid";
-
 export default {
   components: {
     BaseButton,
@@ -80,9 +85,11 @@ export default {
     Plus,
   },
   setup() {
-    const { getTodos, createTodo } = useTodo();
+    const { getTodos, createTodo, getTodo, updateTodo } = useTodo();
 
     const isOpenModal = ref(false);
+
+    const todoId = ref(null);
 
     const todo = reactive({
       title: null,
@@ -91,15 +98,29 @@ export default {
     });
 
     const submitTodo = () => {
-      createTodo({
-        id: uuid(),
-        ...todo,
-      });
+      if (todoId.value) {
+        updateTodo(todoId.value, todo);
+      } else {
+        createTodo(todo);
+      }
       closeModal();
+    };
+
+    const editTodo = (id) => {
+      todoId.value = id;
+
+      isOpenModal.value = true;
+
+      const { title, description, done } = getTodo(id).value;
+
+      todo.title = title;
+      todo.description = description;
+      todo.done = done;
     };
 
     const closeModal = () => {
       isOpenModal.value = false;
+      todoId.value = null;
       clearInput();
     };
 
@@ -114,6 +135,8 @@ export default {
       submitTodo,
       isOpenModal,
       closeModal,
+      editTodo,
+      todoId,
     };
   },
 };

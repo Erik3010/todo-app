@@ -17,6 +17,7 @@
               <span class="ml-2">Edit</span>
             </BaseDropdownItem>
             <BaseDropdownItem
+              @click="removeTodo(item.id)"
               class="text-red-600 hover:text-red-700 hover:bg-red-100"
             >
               <Trash class="w-4 h-4 text-red-600" />
@@ -38,6 +39,8 @@ import VerticalDots from "@/components/icons/VerticalDots";
 import Trash from "@/components/icons/Trash";
 import Pencil from "@/components/icons/Pencil";
 
+import useTodo from "@/store/useTodo";
+
 export default {
   name: "BaseItem",
   components: {
@@ -49,12 +52,14 @@ export default {
     Trash,
   },
   props: ["item"],
-  setup() {
+  setup(_, { emit }) {
+    const { removeTodo } = useTodo();
+
     const editTodo = (id) => {
-      console.log(id);
+      emit("edit-todo", id);
     };
 
-    return { editTodo };
+    return { editTodo, removeTodo };
   },
 };
 </script>
