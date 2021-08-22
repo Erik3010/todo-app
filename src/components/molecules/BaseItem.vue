@@ -1,5 +1,7 @@
 <template>
-  <div class="px-4 py-2 flex cursor-pointer font-medium">
+  <div
+    class="px-4 py-2 flex cursor-pointer font-medium transition-all duration-300"
+  >
     <div class="flex justify-between w-full items-center">
       <BaseCheckbox :id="item.id" v-model="isDone">
         <span :class="['text-sm', { 'line-through': isDone }]">{{

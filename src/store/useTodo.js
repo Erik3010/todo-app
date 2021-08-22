@@ -19,9 +19,6 @@ const getters = {
   getTodo(id) {
     return computed(() => state.todos.find((todo) => todo.id === id));
   },
-  getTodoLength() {
-    return computed(() => state.todos.length);
-  },
 };
 
 const actions = {

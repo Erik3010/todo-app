@@ -17,8 +17,8 @@ export default {
     const closeDrodown = inject("closeDropdown");
 
     const clickHandler = () => {
-      emit("option-click");
       closeDrodown();
+      emit("option-click");
     };
 
     return { clickHandler };
