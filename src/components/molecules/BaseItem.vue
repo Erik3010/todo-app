@@ -1,8 +1,10 @@
 <template>
   <div class="px-4 py-2 flex cursor-pointer font-medium">
     <div class="flex justify-between w-full items-center">
-      <BaseCheckbox :id="item.id" :checked="item.done">
-        <span class="text-sm">{{ item.title }}</span>
+      <BaseCheckbox :id="item.id" v-model="isDone">
+        <span :class="['text-sm', { 'line-through': isDone }]">{{
+          item.title
+        }}</span>
       </BaseCheckbox>
       <div>
         <BaseDropdown>
@@ -41,6 +43,8 @@ import Pencil from "@/components/icons/Pencil";
 
 import useTodo from "@/store/useTodo";
 
+import { ref, watch } from "vue";
+
 export default {
   name: "BaseItem",
   components: {
@@ -52,14 +56,20 @@ export default {
     Trash,
   },
   props: ["item"],
-  setup(_, { emit }) {
-    const { removeTodo } = useTodo();
+  setup(props, { emit }) {
+    const { removeTodo, updateTodo } = useTodo();
+
+    const isDone = ref(props.item.done);
+
+    watch(isDone, (value) => {
+      updateTodo(props.item.id, { ...props.item, done: value });
+    });
 
     const editTodo = (id) => {
       emit("edit-todo", id);
     };
 
-    return { editTodo, removeTodo };
+    return { editTodo, removeTodo, isDone };
   },
 };
 </script>
