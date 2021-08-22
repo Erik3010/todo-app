@@ -4,7 +4,7 @@
     <transition name="dropdown-animation">
       <div
         v-if="showMenu"
-        class="mt-1 bg-white shadow-md border border-gray-300 rounded-lg absolute w-32 z-10 py-1"
+        class="mt-1 bg-white shadow-md border border-gray-300 rounded-lg right-0 sm:left-0 absolute w-40 z-10 py-1"
       >
         <slot name="dropdown-item" />
       </div>

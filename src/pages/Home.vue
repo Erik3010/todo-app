@@ -61,14 +61,17 @@
           />
         </transition-group>
       </div>
-      <div v-else class="flex flex-col justify-center items-center flex-1">
+      <div
+        v-else
+        class="flex flex-col justify-center items-center text-center flex-1"
+      >
         <h3 class="font-bold text-xl text-gray-900 mb-1">
-          You've nothing todo 😓
+          You've nothing to do now 😓
         </h3>
-        <p class="text-sm text-gray-600">
+        <p class="text-sm text-gray-500">
           Create some todo using
           <span class="text-blue-600 font-medium underline">Add Todo</span>
-          button in the top
+          button at the top
         </p>
       </div>
     </transition>
@@ -122,6 +125,8 @@ export default {
     });
 
     const submitTodo = () => {
+      if (!todo.title || todo.title === "") return;
+
       if (todoId.value) {
         updateTodo(todoId.value, todo);
       } else {
@@ -153,7 +158,6 @@ export default {
       todo.description = null;
       todo.done = false;
     };
-
     return {
       todos: getTodos(),
       todo,

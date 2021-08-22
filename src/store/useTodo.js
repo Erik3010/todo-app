@@ -14,7 +14,7 @@ const state = reactive(getDefaultState());
 
 const getters = {
   getTodos() {
-    return state.todos;
+    return computed(() => state.todos);
   },
   getTodo(id) {
     return computed(() => state.todos.find((todo) => todo.id === id));
@@ -32,6 +32,15 @@ const actions = {
   removeTodo(id) {
     const index = state.todos.findIndex((todo) => todo.id === id);
     state.todos.splice(index, 1);
+  },
+  bulkUpdateDone() {
+    state.todos.forEach((todo) =>
+      actions.updateTodo(todo.id, { ...todo, done: true })
+    );
+  },
+  bulkDelete() {
+    Object.assign(state, { todos: [] });
+    // state.todos = [];
   },
 };
 

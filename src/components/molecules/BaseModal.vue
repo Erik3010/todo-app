@@ -10,7 +10,7 @@
         <transition name="modal-animation">
           <div
             v-show="modelValue"
-            class="bg-white sm:rounded-md w-full mx-auto shadow-xl border border-gray-300 p-6 text-black sm:w-full sm:max-w-xl"
+            class="bg-white sm:rounded-md sm:h-auto h-full w-full mx-auto shadow-xl border border-gray-300 p-6 text-black sm:max-w-xl"
           >
             <div class="modal-header">
               <slot name="header" />

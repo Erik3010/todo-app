@@ -3,8 +3,12 @@
     class="px-4 py-2 flex cursor-pointer font-medium transition-all duration-300"
   >
     <div class="flex justify-between w-full items-center">
-      <BaseCheckbox :id="item.id" v-model="isDone">
-        <span :class="['text-sm', { 'line-through': isDone }]">{{
+      <BaseCheckbox
+        :id="item.id"
+        :modelValue="item.done"
+        @update:modelValue="changeTodoStatus"
+      >
+        <span :class="['text-sm', { 'line-through': item.done }]">{{
           item.title
         }}</span>
       </BaseCheckbox>
@@ -21,7 +25,7 @@
               <span class="ml-2">Edit</span>
             </BaseDropdownItem>
             <BaseDropdownItem
-              @click="removeTodo(item.id)"
+              @option-click="removeTodo(item.id)"
               class="text-red-600 hover:text-red-700 hover:bg-red-100"
             >
               <Trash class="w-4 h-4 text-red-600" />
@@ -45,8 +49,6 @@ import Pencil from "@/components/icons/Pencil";
 
 import useTodo from "@/store/useTodo";
 
-import { ref, watch } from "vue";
-
 export default {
   name: "BaseItem",
   components: {
@@ -61,17 +63,15 @@ export default {
   setup(props, { emit }) {
     const { removeTodo, updateTodo } = useTodo();
 
-    const isDone = ref(props.item.done);
-
-    watch(isDone, (value) => {
-      updateTodo(props.item.id, { ...props.item, done: value });
-    });
+    const changeTodoStatus = (status) => {
+      updateTodo(props.item.id, { ...props.item, done: status });
+    };
 
     const editTodo = (id) => {
       emit("edit-todo", id);
     };
 
-    return { editTodo, removeTodo, isDone };
+    return { editTodo, removeTodo, changeTodoStatus };
   },
 };
 </script>

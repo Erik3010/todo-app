@@ -10,7 +10,7 @@
     <div
       class="transition flex items-center justify-center mr-2 bg-white border-2 border-gray-300 w-4 h-4 rounded-sm cursor-pointer"
     >
-      <Check class="hidden w-2 h-2 select-none text-blue-500" />
+      <Check class="hidden w-3 h-3 select-none text-blue-500" />
     </div>
     <label class="cursor-pointer select-none w-full" :for="id">
       <slot />
