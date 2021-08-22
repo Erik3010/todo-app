@@ -34,13 +34,13 @@ const actions = {
     state.todos.splice(index, 1);
   },
   bulkUpdateDone() {
-    state.todos.forEach((todo) =>
-      actions.updateTodo(todo.id, { ...todo, done: true })
+    Object.assign(
+      state.todos,
+      state.todos.map((todo) => ({ ...todo, done: true }))
     );
   },
   bulkDelete() {
     Object.assign(state, { todos: [] });
-    // state.todos = [];
   },
 };
 
